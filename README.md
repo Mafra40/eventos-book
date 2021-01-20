@@ -1,1 +1,1 @@
-# eventos-book
+# Projeto de gerenciamento de eventos comemorativos.
