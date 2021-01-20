@@ -1,0 +1,55 @@
+package br.com.eventosbook.fachada;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import br.com.eventosbook.dao.impl.DaoUsuarioImpl;
+import br.com.eventosbook.modelo.Cidade;
+import br.com.eventosbook.modelo.Situacao;
+import br.com.eventosbook.modelo.Usuario;
+import br.com.eventosbook.rn.RnIncluirCidade;
+import br.com.eventosbook.rn.RnIncluirSituacao;
+import br.com.eventosbook.rn.RnIncluirUsuario;
+
+public class UsuarioServico {
+	
+	private UsuarioServico() {}
+	
+	private static UsuarioServico aControlador = new UsuarioServico();
+	
+	public static UsuarioServico getInstance(){
+		if(UsuarioServico.aControlador == null){
+			UsuarioServico.aControlador = new UsuarioServico();
+		}
+		
+		return UsuarioServico.aControlador;
+	}
+	
+	public void incluirUsuario(Usuario pUsuario){
+		RnIncluirUsuario.getInstance().executar(pUsuario);
+	}
+	
+	public List<Usuario> consultarUsuarios(){
+		ArrayList<Usuario> retorno = new ArrayList<Usuario>();
+		retorno = (ArrayList<Usuario>) DaoUsuarioImpl.getInstance().consultar();
+		
+		return retorno;
+	}
+	
+	public Usuario consultarUsuario(Usuario pUsuario){
+		Usuario retorno = new Usuario();
+		retorno = DaoUsuarioImpl.getInstance().getUsuario(pUsuario);
+		
+		return retorno;
+	}
+	
+	public void incluirSituacao(Situacao pSituacao){
+		RnIncluirSituacao.getInstance().executar(pSituacao);
+	}
+
+	public void incuirCidade(Cidade pCidade) {
+		RnIncluirCidade.getInstance().executar(pCidade);
+		
+	}
+
+}

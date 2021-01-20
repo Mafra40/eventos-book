@@ -1,0 +1,28 @@
+package br.com.eventosbook.rn;
+
+import javax.servlet.http.HttpSession;
+
+import br.com.eventosbook.fachada.UsuarioServico;
+import br.com.eventosbook.modelo.Usuario;
+
+public class RnValidarUsuario {
+	
+private static RnValidarUsuario aRnValidarUsuario = new RnValidarUsuario();
+	
+	public static RnValidarUsuario getInstance(){
+		if(RnValidarUsuario.aRnValidarUsuario == null){
+			RnValidarUsuario.aRnValidarUsuario = new RnValidarUsuario();
+		}
+		
+		return RnValidarUsuario.aRnValidarUsuario;
+	}
+	
+	public boolean executar(Usuario pUsuario, HttpSession pSession){
+		
+	Usuario usuario = new Usuario();
+		
+		usuario = UsuarioServico.getInstance().consultarUsuario(pUsuario);
+		
+	}
+
+}

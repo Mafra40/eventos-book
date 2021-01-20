@@ -1,0 +1,40 @@
+package br.com.eventosbook.dao.impl;
+
+import java.util.List;
+
+import br.com.eventosbook.dao.DaoProdutor;
+import br.com.eventosbook.modelo.Produtor;
+
+public class DaoProdutorImpl implements DaoProdutor {
+
+	@Override
+	public void incluir(Produtor pProdutor) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void alterar(Produtor pProdutor) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void excluir(Produtor pProdutor) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public List<Produtor> consultar() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Produtor getProdutor(Produtor pProdutor) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

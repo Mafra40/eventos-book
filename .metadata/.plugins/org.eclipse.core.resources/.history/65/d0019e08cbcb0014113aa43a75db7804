@@ -1,0 +1,31 @@
+package br.com.eventosbook.rn;
+
+import br.com.eventosbook.constante.Constantes;
+import br.com.eventosbook.dao.impl.DaoUsuarioImpl;
+import br.com.eventosbook.modelo.Usuario;
+
+public class RnAlterarUsuario {
+private static RnAlterarUsuario aRnAlterarUsuario = new RnAlterarUsuario();
+	
+	public static RnAlterarUsuario getInstance(){
+		if(RnAlterarUsuario.aRnAlterarUsuario == null){
+			RnAlterarUsuario.aRnAlterarUsuario = new RnAlterarUsuario();
+		}
+		
+		return RnAlterarUsuario.aRnAlterarUsuario;
+	}
+	
+	public String executar(Usuario pUsuario){
+
+		try{
+			DaoUsuarioImpl.getInstance().alterar(pUsuario);
+			return  Constantes.NM_JSP_USUARIO_ALTERADO_COM_SUCESSO;
+		} catch(Exception e){
+			e.printStackTrace();
+			
+			return Constantes.NM_JSP_USUARIO_ALTERADO_SEM_SUCESSO;
+		}
+		
+	}
+
+}

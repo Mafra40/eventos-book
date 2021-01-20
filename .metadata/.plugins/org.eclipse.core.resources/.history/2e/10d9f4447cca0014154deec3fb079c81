@@ -1,0 +1,14 @@
+package br.com.eventosbook.rn;
+
+import br.com.eventosbook.dao.impl.DaoProdutorImpl;
+import br.com.eventosbook.modelo.Produtor;
+
+public class RnIncluirProdutor {
+	
+	
+	public void executar(Produtor pProdutor){
+		DaoProdutorImpl.getInstance().incluir(pProdutor);
+		
+	}
+
+}

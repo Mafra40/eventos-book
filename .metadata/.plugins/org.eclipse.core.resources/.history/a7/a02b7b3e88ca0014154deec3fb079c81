@@ -1,0 +1,23 @@
+package br.com.eventosbook.rn;
+
+import br.com.eventosbook.modelo.Situacao;
+
+public class RnConsultarSituacao {
+	
+	private RnConsultarSituacao() {}
+	
+	private static RnConsultarSituacaoPorObjeto aRnConsultarSituacao = new RnConsultarSituacaoPorObjeto();
+	
+	public static RnConsultarSituacaoPorObjeto getInstance(){
+		if(RnConsultarSituacaoPorObjeto.aRnConsultarSituacao == null){
+			RnConsultarSituacaoPorObjeto.aRnConsultarSituacao = new RnConsultarSituacaoPorObjeto();
+		}
+		
+		return RnConsultarSituacaoPorObjeto.aRnConsultarSituacao;
+	}
+	
+	public Situacao executar(Situacao pSituacao){
+		
+	}
+
+}

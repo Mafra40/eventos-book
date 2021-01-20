@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<drivers>
+	<provider id="db2"/>
+	<provider id="mysql"/>
+	<provider id="oracle"/>
+	<provider id="generic">
+		<driver id="postgresql" custom="false" name="PostgreSQL" class="org.postgresql.Driver" url="jdbc:postgresql://{host}[:{port}]/[{database}]" port="5432" description="PostgreSQL standard driver">
+			<library path="drivers/postgresql/postgresql-9.1-901.jdbc4.jar" disabled="true"/>
+			<library path="C:\Users\Andre\Downloads\postgresql-9.2-1004.jdbc4.jar"/>
+			<library path="C:\Users\Andre\Downloads\postgresql-9.4-1200.jdbc4.jar"/>
+		</driver>
+	</provider>
+</drivers>

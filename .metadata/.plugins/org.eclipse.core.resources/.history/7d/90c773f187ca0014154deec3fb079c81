@@ -1,0 +1,17 @@
+package br.com.eventosbook.rn;
+
+public class RnConsultarSituacao {
+	
+	private RnConsultarSituacao() {}
+	
+	private static RnConsultarSituacao aRnConsultarSituacao = new RnConsultarSituacao();
+	
+	public static RnConsultarSituacao getInstance(){
+		if(RnConsultarSituacao.aRnConsultarSituacao == null){
+			RnConsultarSituacao.aRnConsultarSituacao = new RnConsultarSituacao();
+		}
+		
+		return RnConsultarSituacao.aRnConsultarSituacao;
+	}
+
+}

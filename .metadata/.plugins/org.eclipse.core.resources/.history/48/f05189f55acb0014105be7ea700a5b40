@@ -1,0 +1,17 @@
+package br.com.eventosbook.util;
+
+public class BibliotecaValidacao {
+	
+	private BibliotecaValidacao() {}
+	
+	private static BibliotecaValidacao aBibliotecaValidacao = new BibliotecaValidacao();
+	
+	public static BibliotecaValidacao getInstance(){
+		if(BibliotecaValidacao.aBibliotecaValidacao == null){
+			BibliotecaValidacao.aBibliotecaValidacao = new BibliotecaValidacao();
+		}
+		
+		return BibliotecaValidacao.aBibliotecaValidacao;
+	}
+
+}

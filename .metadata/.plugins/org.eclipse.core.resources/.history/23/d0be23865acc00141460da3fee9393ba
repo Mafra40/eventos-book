@@ -1,0 +1,42 @@
+package br.com.eventosbook.controladores;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import br.com.eventosbook.constante.Constantes;
+import br.com.eventosbook.fachada.ContratanteServico;
+import br.com.eventosbook.modelo.Formulario;
+import br.com.eventosbook.modelo.Cidade;
+import br.com.eventosbook.modelo.Contratante;
+import br.com.eventosbook.modelo.Endereco;
+import br.com.eventosbook.modelo.Estado;
+import br.com.eventosbook.modelo.Telefone;
+import br.com.eventosbook.modelo.Usuario;
+
+
+@Controller
+public class ContratanteControlador {
+
+
+	@RequestMapping("/"+Constantes.LINK_CADASTRAR_CONTRATANTE)
+	public String getCadastrarContratante(){
+		return Constantes.NM_JSP_CADASTRAR_CONTRATANTE;
+	}
+	
+	@RequestMapping("/"+Constantes.LINK_EFETUAR_CADASTRO_CONTRATANTE)
+	public String getEfetuarCadastroContratante(Formulario pFFormulario){
+		ContratanteServico.getInstance().incluirContratante(pFFormulario);
+		return Constantes.NM_JSP_CADASTRAR_CONTRATANTE;
+	}
+	
+	
+	@RequestMapping("/"+Constantes.LINK_HOME_CONTRATANTE)
+	public String getHomeContratante(){
+		return Constantes.NM_JSP_HOME_CONTRATANTE;
+	}
+	
+	@RequestMapping(Constantes.LINK_AREA_CONTRATANTE)
+	public String getAreaContratante(){
+		return Constantes.NM_JSP_AREA_CONTRATANTE;
+	}
+}

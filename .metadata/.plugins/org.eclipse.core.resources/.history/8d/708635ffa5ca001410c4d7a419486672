@@ -1,0 +1,54 @@
+package br.com.eventosbook.constante;
+
+public class Constantes {
+	
+	
+	/**
+	 * SIGLAS
+	 */
+	public static final Character SIGLA_TIPO_USUARIO_CONTRATANTE = 'C';
+	public static final Character SIGLA_TIPO_USUARIO_FORNECEDOR = 'F';
+	public static final Character SIGLA_TIPO_USUARIO_PRODUTOR = 'P';
+	public static final Character SIGLA_TIPO_USUARIO_ADMINISTRADOR = 'A';
+	public static final Character SIGLA_SITUACAO_USUARIO_ATIVO = 'A';
+	public static final Character SIGLA_SITUACAO_USUARIO_INATIVO = 'I';
+	
+	/**
+	 * LINKS DO SISTEMA
+	 */
+	public static final String LINK_LOGIN = "Login";
+	public static final String LINK_EFETUAR_LOGIN = "efetuarLogin";
+	public static final String LINK_AREA_CONTRATANTE = "areaContratante";
+	public static final String LINK_AREA_FORNECEDOR = "areaFornecedor";
+	public static final String LINK_AREA_PRODUTOR = "areaProdutor";
+	public static final String LINK_HOME_CONTRATANTE = "homeContratante";
+	public static final String LINK_HOME_FORNECEDOR = "homeFornecedor";
+	public static final String LINK_HOME_PRODUTOR= "homeProdutor";
+	/**
+	 * Atributos referencias passados no HttpSession
+	 */
+	public static final String CONTEXTO_USUARIO_LOGADO = "contextoUsuarioLogado";
+	
+	/**
+	 * NOMES DAS JSP's / TELAS CRIADAS SE ENCONTRA NA PASTA ..WEB-INF/view
+	 */
+	
+	public static final String NM_JSP_LOGIN = "login";
+	public static final String NM_JSP_HOME_CONTRATANTE = "homeContratante";
+	public static final String NM_JSP_HOME_FORNECEDOR = "homeFornecedor";
+	public static final String NM_JSP_HOME_PRODUTOR = "homeProdutor";
+	public static final String NM_JSP_HOME_ADMINISTRADOR = "homeAdimnistrador";
+	public static final String NM_JSP_AREA_CONTRATANTE = "areaContratante";
+	public static final String NM_JSP_AREA_FORNECEDOR = "areaFornecedor";
+	public static final String NM_JSP_AREA_PRODUTOR = "areaProdutor";
+	
+	/**
+	 * PATH
+	 */
+	public static final String PATH_PROJECT = "br.com.eventosbook";
+	
+
+	
+	
+
+}

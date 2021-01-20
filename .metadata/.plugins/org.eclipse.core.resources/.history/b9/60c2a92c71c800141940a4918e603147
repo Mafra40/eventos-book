@@ -1,0 +1,16 @@
+package br.com.eventosbook.interfaces;
+
+import java.util.List;
+
+import br.com.eventosbook.modelo.Situacao;
+import br.com.eventosbook.modelo.Usuario;
+
+public interface IntfSituacao {
+	
+	public void incluir(Situacao pSituacao);
+	public void alterar(Situacao pSituacao);
+	public void excluir(Situacao pSituacao);
+	public List<Situacao>consultar();
+	public Usuario getUsuario(Situacao pSituacao);
+
+}

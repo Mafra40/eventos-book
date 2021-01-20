@@ -1,0 +1,102 @@
+package br.com.eventosbook.modelo;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="Endereco", schema="eventosbook_teste")
+@SequenceGenerator(name="sequencia_endereco", sequenceName="sequencia_endereco", initialValue=1, allocationSize=50)
+public class Endereco {
+	
+	
+	@Id
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="sequencia_endereco")
+	@Column(name="id_endereco")
+	private Integer codigo;
+	
+	@Column(name="descricao", nullable = false)
+	private String descricao;
+	
+	@Column(name="numero", nullable = false)
+	private String numero;
+	
+	@Column(name="cep", nullable = false)
+	private Integer cep;
+	
+	@Column(name="complemento")
+	private String complemento;
+	
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name="fk_cidade")
+	private Cidade cidade;
+	
+	@OneToOne
+	@JoinColumn(name="fk_estado")
+	private Estado estado;
+	
+	@Column(name="logradouro", nullable = false)
+	private String logradouro;
+	
+	public Integer getCodigo() {
+		return codigo;
+	}
+	public void setCodigo(Integer codigo) {
+		this.codigo = codigo;
+	}
+	public String getDescricao() {
+		return descricao;
+	}
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
+	}
+
+	public Integer getCep() {
+		return cep;
+	}
+	public void setCep(Integer cep) {
+		this.cep = cep;
+	}
+	public String getComplemento() {
+		return complemento;
+	}
+	public void setComplemento(String complemento) {
+		this.complemento = complemento;
+	}
+	public Cidade getCidade() {
+		return cidade;
+	}
+	public void setCidade(Cidade cidade) {
+		this.cidade = cidade;
+	}
+	public String getNumero() {
+		return numero;
+	}
+	public void setNumero(String numero) {
+		this.numero = numero;
+	}
+	public String getLogradouro() {
+		return logradouro;
+	}
+	public void setLogradouro(String logradouro) {
+		this.logradouro = logradouro;
+	}
+	public Estado getEstado() {
+		return estado;
+	}
+	public void setEstado(Estado estado) {
+		this.estado = estado;
+	}
+	
+	
+	
+	
+
+}

@@ -1,0 +1,40 @@
+package br.com.eventosbook.dao;
+
+import java.util.List;
+
+import br.com.eventosbook.interfaces.IntfSituacao;
+import br.com.eventosbook.modelo.Situacao;
+
+public class DAOSituacao implements IntfSituacao {
+
+	@Override
+	public void incluir(Situacao pSituacao) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void alterar(Situacao pSituacao) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void excluir(Situacao pSituacao) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public List<Situacao> consultar() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Situacao getSituacao(Situacao pSituacao) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

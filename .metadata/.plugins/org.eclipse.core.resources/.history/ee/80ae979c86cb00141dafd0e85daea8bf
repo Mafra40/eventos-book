@@ -1,0 +1,75 @@
+package br.com.eventosbook.util;
+
+import java.security.MessageDigest;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Random;
+
+public class BibliotecaFuncao {
+
+	public static Calendar getDataAtual() {
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(new Date());
+		
+		return cal;
+	}
+	
+
+	public static Calendar inserirData(int pDia, int pMes, int pAno){
+		Calendar retorno = Calendar.getInstance();
+		retorno.set(pAno, pMes, pDia);
+		return retorno;
+	}
+	
+	
+	public static String criptografarPalavra(String pPalavra){
+		StringBuilder sb = new StringBuilder();
+		try {
+			MessageDigest criptSenha = MessageDigest.getInstance("SHA-512");
+			byte messageHash[] = criptSenha.digest(pPalavra.getBytes("UTF-8"));
+			
+			
+			for (byte b : messageHash) {
+				sb.append(String.format("%02X", 0xFF & b));
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return sb.toString();
+	}
+	
+	
+	public static String gerarSenha(){
+		
+		Random rd = new Random();
+		
+		return null;
+	}
+	
+	public static void main(String[] args) {
+		int valor = 49;
+		char teste = (char)valor;
+		
+		System.out.println(teste);
+	}
+	
+	
+	private static char toChar(int index) {  
+        if (index < 10)  
+            return (char)(index + 48); //os chars 48 a 57 representam [0 - 9]  
+        else if (index < 36)  
+            return (char)(index + 55); //os chars 65 a 90 representam [A - Z]  
+        else  
+            return (char)(index + 61); //os chars 97 a 122 representam [a - z]  
+    }  
+	
+	private static char[] sequenciaAlfaNumericos(int pTamanho){
+		for (int i = 0; i < pTamanho; i++) {
+			
+		}
+	}
+	
+	
+}

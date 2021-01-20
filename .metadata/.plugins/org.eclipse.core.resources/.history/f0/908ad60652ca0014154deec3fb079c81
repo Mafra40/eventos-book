@@ -1,0 +1,53 @@
+package br.com.eventosbook.dao.impl;
+
+import java.util.List;
+
+import br.com.eventosbook.dao.DaoTipoUsuario;
+import br.com.eventosbook.modelo.TipoUsuario;
+
+public class DaoTipoUsuarioImpl implements DaoTipoUsuario{
+	
+	private DaoTipoUsuarioImpl() {}
+	private static DaoTipoUsuarioImpl aDAOTipoUsuario = new DaoTipoUsuarioImpl();
+
+	public static DaoTipoUsuarioImpl getInstance(){
+		if(DaoTipoUsuarioImpl.aDAOTipoUsuario == null){
+			DaoTipoUsuarioImpl.aDAOTipoUsuario = new DaoTipoUsuarioImpl();
+		}
+		
+		return DaoTipoUsuarioImpl.aDAOTipoUsuario;
+	}
+	
+
+
+	@Override
+	public void incluir(TipoUsuario pTipoUsuario) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void alterar(TipoUsuario pTipoUsuario) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void excluir(TipoUsuario pTipoUsuario) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public List<TipoUsuario> consultar() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public TipoUsuario getTipoUsuario(TipoUsuario pTipoUsuario) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

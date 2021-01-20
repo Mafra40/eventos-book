@@ -1,0 +1,151 @@
+package br.com.eventosbook.modelo;
+
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.NotEmpty;
+
+/**
+ * @author Andre Lucas
+ * 
+ * A Classe Cadastro, serve para facilitar a recuperação dos atributos,
+ * nos formulários de CADASTRO, ela deve ser passada por parâmentro no 
+ * Controlador da entidade que se está sendo implementada,
+ * depois passada pela camada de serviços e depois na RN pertencente 
+ * a sua entidade.
+ * 
+ * Ex:
+ * 
+ * @Controller
+ * public EntidadeControlador(){
+ * 		public String efetuarCadastroEntidade(Cadastro pCadastro){
+ * 			EntidadeServico.getInstance().incluirEntidade(pCadastro);
+ * 		}
+ * }
+ * */
+public class Cadastro {
+
+	@NotEmpty(message = "{campo.nome.vazio}")
+	private String nome;
+	
+	@NotEmpty(message = "{campo.nome.vazio}")
+	@Pattern(regexp="^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9]+(\\.[AZa-z0-9]+)*(\\.[A-Za-z]{2,})$", message="{campo.email.invalido}")
+	private String email;
+	
+	@NotEmpty(message = "{campo.senha.vazio}")
+	@Size(min = 8, message = "{campo.senha.minimo}")
+	private String senha;
+	
+	@Size(min = 8, message = "{campo.senha.minimo}")
+	private String confirmSenha;
+	
+	@NotEmpty(message = "{campo.sexo.vazio}")
+	private String sexo;
+	
+	@NotEmpty(message = "{campo.data.vazio}")
+	private String dataNascimento;
+	
+	@NotEmpty(message = "{campo.telefone.vazio}")
+	private String telefone1;
+	private String telefone2;
+	private String telefone3;
+	
+	@NotEmpty(message = "{campo.lougradouro.vazio}")
+	private String lougradouro;
+	
+	@NotEmpty(message = "{campo.cep.vazio}")
+	private String cep;
+	private String complemento;
+	private String numero;
+	
+	@NotEmpty(message = "{campo.cidade.vazio}")
+	private String cidade;
+	
+	public String getNome() {
+		return nome;
+	}
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public String getSenha() {
+		return senha;
+	}
+	public void setSenha(String senha) {
+		this.senha = senha;
+	}
+	public String getConfirmSenha() {
+		return confirmSenha;
+	}
+	public void setConfirmSenha(String confirmSenha) {
+		this.confirmSenha = confirmSenha;
+	}
+	public String getSexo() {
+		return sexo;
+	}
+	public void setSexo(String sexo) {
+		this.sexo = sexo;
+	}
+	
+	public String getDataNascimento() {
+		return dataNascimento;
+	}
+	public void setDataNascimento(String dataNascimento) {
+		this.dataNascimento = dataNascimento;
+	}
+	public String getTelefone1() {
+		return telefone1;
+	}
+	public void setTelefone1(String telefone1) {
+		this.telefone1 = telefone1;
+	}
+	public String getTelefone2() {
+		return telefone2;
+	}
+	public void setTelefone2(String telefone2) {
+		this.telefone2 = telefone2;
+	}
+	public String getTelefone3() {
+		return telefone3;
+	}
+	public void setTelefone3(String telefone3) {
+		this.telefone3 = telefone3;
+	}
+	public String getLougradouro() {
+		return lougradouro;
+	}
+	public void setLougradouro(String lougradouro) {
+		this.lougradouro = lougradouro;
+	}
+	public String getCep() {
+		return cep;
+	}
+	public void setCep(String cep) {
+		this.cep = cep;
+	}
+	public String getComplemento() {
+		return complemento;
+	}
+	public void setComplemento(String complemento) {
+		this.complemento = complemento;
+	}
+	public String getNumero() {
+		return numero;
+	}
+	public void setNumero(String numero) {
+		this.numero = numero;
+	}
+	public String getCidade() {
+		return cidade;
+	}
+	public void setCidade(String cidade) {
+		this.cidade = cidade;
+	}
+	
+	
+}

@@ -1,0 +1,47 @@
+package br.com.eventosbook.fachada;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import br.com.eventosbook.dao.impl.DaoSituacaoImpl;
+import br.com.eventosbook.dao.impl.DAOUsuario;
+import br.com.eventosbook.modelo.Situacao;
+import br.com.eventosbook.modelo.Usuario;
+
+public class Controlador {
+	
+	private Controlador() {	}
+	
+	private static Controlador aControlador = new Controlador();
+	
+	public static Controlador getInstance(){
+		if(Controlador.aControlador == null){
+			Controlador.aControlador = new Controlador();
+		}
+		
+		return Controlador.aControlador;
+	}
+	
+	public void incluirUsuario(Usuario pUsuario){
+		DAOUsuario.getInstance().incluir(pUsuario);
+	}
+	
+	public List<Usuario> consultarUsuarios(){
+		ArrayList<Usuario> retorno = new ArrayList<Usuario>();
+		retorno = (ArrayList<Usuario>) DAOUsuario.getInstance().consultar();
+		
+		return retorno;
+	}
+	
+	public Usuario consultarUsuario(Usuario pUsuario){
+		Usuario retorno = new Usuario();
+		retorno = DAOUsuario.getInstance().getUsuario(pUsuario);
+		
+		return retorno;
+	}
+	
+	public void incluirSituacao(Situacao pSituacao){
+		DaoSituacaoImpl.getInstance().incluir(pSituacao);
+	}
+
+}

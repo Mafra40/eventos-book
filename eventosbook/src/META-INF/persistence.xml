@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<persistence xmlns="http://java.sun.com/xml/ns/persistence"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence
+     http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
+	version="2.0">
+
+	<persistence-unit name="eventosbook">
+
+		<!-- provedor/implementacao do JPA -->
+		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+		
+		<!-- entidades mapeadas -->
+		<class>br.com.eventosbook.modelo.Categoria</class>
+		<class>br.com.eventosbook.modelo.CheckList</class>
+		<class>br.com.eventosbook.modelo.Cidade</class>
+		<class>br.com.eventosbook.modelo.Contratante</class>
+		<class>br.com.eventosbook.modelo.Email</class>	
+		<class>br.com.eventosbook.modelo.Endereco</class>
+		<class>br.com.eventosbook.modelo.Estado</class>
+		<class>br.com.eventosbook.modelo.Evento</class>
+		<class>br.com.eventosbook.modelo.Fornecedor</class>
+		<class>br.com.eventosbook.modelo.FuncaoSistema</class>
+		<class>br.com.eventosbook.modelo.Imagem</class>
+		<class>br.com.eventosbook.modelo.Item</class>
+		<class>br.com.eventosbook.modelo.Produtor</class>
+		<class>br.com.eventosbook.modelo.Situacao</class>
+		<class>br.com.eventosbook.modelo.SubCategoria</class>
+		<class>br.com.eventosbook.modelo.TipoEvento</class>
+		<class>br.com.eventosbook.modelo.TipoUsuario</class>
+		<class>br.com.eventosbook.modelo.Telefone</class>
+		<class>br.com.eventosbook.modelo.Usuario</class>
+		<class>br.com.eventosbook.modelo.MeuFornecedor</class>
+		<class>br.com.eventosbook.modelo.Avaliacao</class>
+
+		<properties>
+		
+			<!-- dados da conexao -->
+			<!--
+			<property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver" />
+			<property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/eventosb_nassau" />
+			<property name="javax.persistence.jdbc.user" value="eventosb_admin" />
+			<property name="javax.persistence.jdbc.password" value="eventos_B@@k" />
+			-->
+				
+			<!-- dados da conexao - Desenv -->
+			<property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver" />
+			<property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/eventosbook_desenv" />
+			<property name="javax.persistence.jdbc.user" value="postgres" />
+			<property name="javax.persistence.jdbc.password" value="852654" />
+        
+
+			<!-- propriedades do hibernate -->
+			<property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect" />
+			<property name="hibernate.show_sql" value="true" />
+			<property name="hibernate.format_sql" value="true" />
+			<property name="hibernate.temp.use_jdbc_metadata_defaults" value="false"/>
+			<property name="hibernate.connection.autocommit" value="false"/>
+			
+			<!-- Conection Pool 
+			<property name="hibernate.c3p0.min_size" value="5"/>
+  			<property name="hibernate.c3p0.max_size" value="15"/>
+ 			<property name="hibernate.c3p0.max_statements" value="50"/>
+  			<property name="hibernate.c3p0.idle_test_period" value="300" />
+			<property name="hibernate.c3p0.timeout" value="350"/>
+			-->
+			<!-- atualiza o banco, gera as tabelas se for preciso 
+			<property name="hibernate.hbm2ddl.auto" value="update" /> -->
+			
+		</properties>
+	</persistence-unit>
+</persistence>
+   

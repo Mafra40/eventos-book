@@ -1,0 +1,9 @@
+package br.com.eventosbook.modelo;
+
+public class CadastroContratante extends Cadastro {
+	
+	public CadastroContratante() {
+		super();
+	}
+
+}

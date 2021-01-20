@@ -1,0 +1,27 @@
+package br.com.eventosbook.fachada;
+
+import br.com.eventosbook.modelo.Cadastro;
+import br.com.eventosbook.modelo.Contratante;
+import br.com.eventosbook.rn.RnIncluirContratante;
+
+public class ContratanteServico {
+	
+	private ContratanteServico() {}
+	
+	private static ContratanteServico aContratanteServico = new ContratanteServico();
+	
+	public static ContratanteServico getInstance(){
+		if(ContratanteServico.aContratanteServico == null){
+			ContratanteServico.aContratanteServico = new ContratanteServico();
+		}
+		
+		return ContratanteServico.aContratanteServico;
+	}
+	
+	
+	public void incluirContratante(Cadastro pCadastro){
+		RnIncluirContratante.getInstance().executar(pContratante);
+	}
+	
+
+}

@@ -1,0 +1,12 @@
+package br.com.eventosbook.rn;
+
+import br.com.eventosbook.dao.impl.DaoCidadeImpl;
+import br.com.eventosbook.modelo.Cidade;
+
+public class RnIncluirCidade {
+
+	
+	public void executar(Cidade pCidade){
+		DaoCidadeImpl.getInstance().incluir(pCidade);
+	}
+}

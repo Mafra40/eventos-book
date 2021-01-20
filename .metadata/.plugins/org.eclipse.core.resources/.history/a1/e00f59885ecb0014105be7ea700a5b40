@@ -1,0 +1,15 @@
+package br.com.eventosbook.rn;
+
+public class RnAlterarSenhaUsuario {
+	
+private static RnAlterarSenhaUsuario aRnAlterarSenhaUsuario = new RnAlterarSenhaUsuario();
+	
+	public static RnAlterarSenhaUsuario getInstance(){
+		if(RnAlterarSenhaUsuario.aRnAlterarSenhaUsuario == null){
+			RnAlterarSenhaUsuario.aRnAlterarSenhaUsuario = new RnAlterarSenhaUsuario();
+		}
+		
+		return RnAlterarSenhaUsuario.aRnAlterarSenhaUsuario;
+	}
+
+}

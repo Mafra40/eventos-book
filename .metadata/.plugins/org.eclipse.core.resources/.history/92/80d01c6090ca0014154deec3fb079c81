@@ -1,0 +1,62 @@
+package br.com.eventosbook.modelo;
+
+import java.util.Collection;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="estado", schema="eventosbook_teste")
+@SequenceGenerator(name="sequencia_estado", sequenceName="sequencia_estado", initialValue=1, allocationSize=50)
+public class Estado {
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO, generator="sequencia_estado")
+	@Column(name="id_estado")
+	private Integer codigo;
+	
+	@Column(name="descricao", unique = true, nullable = false)
+	private String descricao;
+	
+	@Column(name="sigla", length = 2, unique = true, nullable = false)
+	private String sigla;
+	
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinColumn(name = "fk_cidade")
+	private Collection<Cidade> colecaoCidade;
+	
+	
+	public Collection<Cidade> getColecaoCidade() {
+		return colecaoCidade;
+	}
+	public void setColecaoCidade(Collection<Cidade> colecaoCidade) {
+		this.colecaoCidade = colecaoCidade;
+	}
+	public Integer getCodigo() {
+		return codigo;
+	}
+	public void setCodigo(Integer codigo) {
+		this.codigo = codigo;
+	}
+	public String getDescricao() {
+		return descricao;
+	}
+	public void setDescricao(String descricao) {
+		this.descricao = descricao.toUpperCase();
+	}
+	public String getSigla() {
+		return sigla;
+	}
+	public void setSigla(String sigla) {
+		this.sigla = sigla;
+	}
+	
+}

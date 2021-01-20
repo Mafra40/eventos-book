@@ -1,0 +1,23 @@
+package br.com.eventosbook.fachada;
+
+import br.com.eventosbook.dao.impl.DaoFornecedorImpl;
+import br.com.eventosbook.modelo.Fornecedor;
+
+public class FornecedorServico {
+	
+
+	private static FornecedorServico aFornecedorServico = new FornecedorServico();
+	
+	public static FornecedorServico getInstance(){
+		if(FornecedorServico.aFornecedorServico == null){
+			FornecedorServico.aFornecedorServico = new FornecedorServico();
+		}
+		
+		return FornecedorServico.aFornecedorServico;
+	}
+
+	
+	public void incluirFornecedor(Fornecedor pFornecedor){
+		DaoFornecedorImpl.getInstance().incluir(pFornecedor);
+	}
+}

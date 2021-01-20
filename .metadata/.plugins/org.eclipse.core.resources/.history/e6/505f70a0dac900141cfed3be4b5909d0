@@ -1,0 +1,112 @@
+package br.com.eventosbook.dao;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.hibernate.Query;
+import org.hibernate.Transaction;
+
+import br.com.eventosbook.interfaces.IntfUsuario;
+import br.com.eventosbook.modelo.Usuario;
+import br.com.eventosbook.util.ConnectionFactory;
+import br.com.eventosbook.util.Constantes;
+
+public class DAOUsuario implements IntfUsuario {
+	
+	private DAOUsuario() {}
+	private static DAOUsuario aDAOUsuario = new DAOUsuario();
+
+	public static DAOUsuario getInstance(){
+		if(DAOUsuario.aDAOUsuario == null){
+			DAOUsuario.aDAOUsuario = new DAOUsuario();
+		}
+		
+		return DAOUsuario.aDAOUsuario;
+	}
+	
+	
+	@Override
+	public void incluir(Usuario pUsuario) {
+		
+		Transaction tx = ConnectionFactory.getInstace().getConnection().beginTransaction();
+		ConnectionFactory.getInstace().getConnection().save(pUsuario);
+		tx.commit();
+		ConnectionFactory.getInstace().closeConnection();
+	}
+
+	@Override
+	public void alterar(Usuario pUsuario) {
+		Transaction tx = ConnectionFactory.getInstace().getConnection().beginTransaction();
+		ConnectionFactory.getInstace().getConnection().update(pUsuario);
+		tx.commit();
+		ConnectionFactory.getInstace().closeConnection();
+
+	}
+
+	@Override
+	public void excluir(Usuario pUsuario) {
+		Transaction tx = ConnectionFactory.getInstace().getConnection().beginTransaction();
+		ConnectionFactory.getInstace().getConnection().delete(pUsuario);
+		tx.commit();
+		ConnectionFactory.getInstace().closeConnection();
+
+	}
+
+	@Override
+	public List<Usuario> consultar() {
+		ArrayList<Usuario> retorno = new ArrayList<Usuario>();
+		Query q = ConnectionFactory.getInstace().getConnection().createQuery("FROM " + Constantes.PATH_PROJECT + ".model.Usuario");
+		retorno = (ArrayList<Usuario>) q.list();
+		return retorno;
+	}
+
+	@Override
+	public Usuario getUsuario(Usuario pUsuario) {
+		Usuario retorno = new Usuario();
+		
+		try{
+			
+			if(pUsuario !=null){
+				
+				String sql = "FROM " + Constantes.PATH_PROJECT + ".model.Usuario WHERE 1=1";
+				
+				if(pUsuario.getCodigo() != null){
+					sql += " AND id_usuario =:id";
+				}
+		
+				if(pUsuario.getEmail() != null){
+					sql += " AND  email =:email";
+				}
+				if(pUsuario.getSenha() != null){
+					sql+= " AND  senha =:senha";
+				}
+				
+				
+				Query q = ConnectionFactory.getInstace().getConnection().createQuery(sql);
+				
+				if(pUsuario.getCodigo() != null){
+					q.setParameter("id", pUsuario.getCodigo());
+				}
+	
+				if(pUsuario.getEmail() != null){
+					q.setParameter("email", pUsuario.getEmail());
+				}
+				if(pUsuario.getSenha() != null){
+					q.setParameter("senha", pUsuario.getSenha());
+				}
+				
+				retorno = (Usuario) q.uniqueResult();
+			}
+			
+			
+		}catch(Exception e){
+			
+			e.printStackTrace();
+			retorno = null;
+		}
+		
+		return retorno;
+		
+	}
+
+}

@@ -1,0 +1,23 @@
+package br.com.eventosbook.rn;
+
+import br.com.eventosbook.dao.impl.DaoCidadeImpl;
+import br.com.eventosbook.modelo.Cidade;
+
+public class RnIncluirCidade {
+
+	
+	private static RnIncluirEstado aRnIncluirCidade = new RnIncluirEstado();
+	
+	public static RnIncluirEstado getInstance(){
+		if(RnIncluirEstado.aRnIncluirCidade == null){
+			RnIncluirEstado.aRnIncluirCidade = new RnIncluirEstado();
+		}
+		
+		return RnIncluirEstado.aRnIncluirCidade;
+	}
+
+	
+	public void executar(Cidade pCidade){
+		DaoCidadeImpl.getInstance().incluir(pCidade);
+	}
+}

@@ -1,0 +1,147 @@
+package br.com.eventosbook.dao.impl;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.Query;
+import javax.persistence.TypedQuery;
+
+import br.com.eventosbook.constante.Constantes;
+import br.com.eventosbook.dao.DaoUsuario;
+import br.com.eventosbook.hibernate.util.ConnectionFactory;
+import br.com.eventosbook.modelo.Usuario;
+
+public class DaoUsuarioImpl implements DaoUsuario {
+	
+	private DaoUsuarioImpl() {}
+	private static DaoUsuarioImpl aDAOUsuario = new DaoUsuarioImpl();
+
+	public static DaoUsuarioImpl getInstance(){
+		if(DaoUsuarioImpl.aDAOUsuario == null){
+			DaoUsuarioImpl.aDAOUsuario = new DaoUsuarioImpl();
+		}
+		
+		return DaoUsuarioImpl.aDAOUsuario;
+	}
+	
+	
+	@Override
+	public void incluir(Usuario pUsuario) {
+		
+		try{
+			ConnectionFactory.getInstace().getConnection().getTransaction().begin();
+			ConnectionFactory.getInstace().getConnection().persist(pUsuario);
+			ConnectionFactory.getInstace().getConnection().getTransaction().commit();
+		}catch(Exception e){
+			e.printStackTrace();
+			System.out.println(e.getMessage());
+			ConnectionFactory.getInstace().getConnection().getTransaction().rollback();
+			
+		} finally{
+			ConnectionFactory.getInstace().getCloseConnection();
+
+		}
+	}
+
+	@Override
+	public void alterar(Usuario pUsuario) {
+		try{
+			ConnectionFactory.getInstace().getConnection().getTransaction().begin();
+			ConnectionFactory.getInstace().getConnection().merge(pUsuario);
+			ConnectionFactory.getInstace().getConnection().getTransaction().commit();
+		}catch(Exception e){
+			e.printStackTrace();
+			System.out.println(e.getMessage());
+			ConnectionFactory.getInstace().getConnection().getTransaction().rollback();
+			
+		} finally{
+			ConnectionFactory.getInstace().getCloseConnection();
+
+		}
+
+	}
+
+	@Override
+	public void excluir(Usuario pUsuario) {
+		try{
+			ConnectionFactory.getInstace().getConnection().getTransaction().begin();
+			ConnectionFactory.getInstace().getConnection().remove(pUsuario);
+			ConnectionFactory.getInstace().getConnection().getTransaction().commit();
+		}catch(Exception e){
+			e.printStackTrace();
+			System.out.println(e.getMessage());
+			ConnectionFactory.getInstace().getConnection().getTransaction().rollback();
+			
+		} finally{
+			ConnectionFactory.getInstace().getCloseConnection();
+
+		}
+
+	}
+
+	@Override
+	public List<Usuario> consultar() {
+		List<Usuario> retorno = new ArrayList<Usuario>();
+		try {
+			String sql = "FROM " + Constantes.PATH_PROJECT + ".model.Usuario"
+			TypedQuery<Usuario> q = ConnectionFactory.getInstace().getConnection().createQuery(sql, Usuario.class);
+			retorno = (ArrayList<Usuario>) q.getResultList();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			retorno = null;
+		}
+		
+		return retorno;
+	}
+
+	@Override
+	public Usuario getUsuario(Usuario pUsuario) {
+		Usuario retorno = new Usuario();
+		
+		try{
+			
+			if(pUsuario !=null){
+				
+				String sql = "FROM " + Constantes.PATH_PROJECT + ".model.Usuario WHERE 1=1";
+				
+				if(pUsuario.getCodigo() != null){
+					sql += " AND id_usuario =:id";
+				}
+		
+				if(pUsuario.getEmail() != null){
+					sql += " AND  email =:email";
+				}
+				if(pUsuario.getSenha() != null){
+					sql+= " AND  senha =:senha";
+				}
+				
+				
+				Query q = ConnectionFactory.getInstace().getConnection().createQuery(sql);
+				
+				if(pUsuario.getCodigo() != null){
+					q.setParameter("id", pUsuario.getCodigo());
+				}
+	
+				if(pUsuario.getEmail() != null){
+					q.setParameter("email", pUsuario.getEmail());
+				}
+				if(pUsuario.getSenha() != null){
+					q.setParameter("senha", pUsuario.getSenha());
+				}
+				
+				retorno = (Usuario) q.getSingleResult();
+			}
+			
+			
+		}catch(Exception e){
+			
+			e.printStackTrace();
+			retorno = null;
+		}
+		
+		return retorno;
+		
+	}
+
+}

@@ -1,0 +1,24 @@
+package br.com.eventosbook.rn;
+
+import br.com.eventosbook.dao.impl.DaoSituacaoImpl;
+import br.com.eventosbook.modelo.Situacao;
+
+public class RnIncluirSituacao {
+	
+	
+	private static RnIncluirSituacao aRnIncluirSituacao = new RnIncluirSituacao();
+	
+	public static RnIncluirSituacao getInstance(){
+		if(RnIncluirSituacao.aRnIncluirSituacao == null){
+			RnIncluirSituacao.aRnIncluirSituacao = new RnIncluirSituacao();
+		}
+		
+		return RnIncluirSituacao.aRnIncluirSituacao;
+	}
+
+	
+	public void executar(Situacao pSituacao){
+		DaoSituacaoImpl.getInstance().incluir(pSituacao);
+	}
+
+}

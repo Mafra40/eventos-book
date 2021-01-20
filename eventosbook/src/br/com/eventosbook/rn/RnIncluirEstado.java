@@ -1,0 +1,23 @@
+package br.com.eventosbook.rn;
+
+import br.com.eventosbook.dao.impl.DaoEstadoImpl;
+import br.com.eventosbook.modelo.Estado;
+
+public class RnIncluirEstado {
+
+	
+	private static RnIncluirEstado aRnIncluirEstado = new RnIncluirEstado();
+	
+	public static RnIncluirEstado getInstance(){
+		if(RnIncluirEstado.aRnIncluirEstado == null){
+			RnIncluirEstado.aRnIncluirEstado = new RnIncluirEstado();
+		}
+		
+		return RnIncluirEstado.aRnIncluirEstado;
+	}
+
+	
+	public void executar(Estado pEstado){
+		DaoEstadoImpl.getInstance().incluir(pEstado);
+	}
+}

@@ -1,0 +1,95 @@
+package br.com.eventosbook.modelo;
+
+import java.util.Calendar;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+@Entity
+@Table(name="contratante", schema="eventosbook_teste")
+@SequenceGenerator(name="sequencia_contratante", sequenceName="sequencia_contratante", initialValue=1, allocationSize=50)
+public class Contratante {
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequencia_contratante")
+	@Column(name="id_contratante")
+	private Integer codigo;
+	
+	@Column(name="nome", nullable = false)
+	private String nome;
+	
+	@Column(name="sexo", nullable = false)
+	private String sexo;
+	
+	@Temporal(TemporalType.DATE)
+	@Column(name="data_nascimento")
+	private Calendar dataNascimento;
+	
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name="fk_usuario")
+	private Usuario usuario;
+	
+	@Column(name="cpf", unique = true, nullable = false)
+	private String cpf;
+
+	public Integer getCodigo() {
+		return codigo;
+	}
+
+	public void setCodigo(Integer codigo) {
+		this.codigo = codigo;
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome.toUpperCase();
+	}
+
+	public String getSexo() {
+		return sexo;
+	}
+
+	public void setSexo(String sexo) {
+		this.sexo = sexo.toUpperCase();
+	}
+
+	public Calendar getDataNascimento() {
+		return dataNascimento;
+	}
+
+	public void setDataNascimento(Calendar dataNascimento) {
+		this.dataNascimento = dataNascimento;
+	}
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+
+	public String getCpf() {
+		return cpf;
+	}
+
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
+	}
+	
+	
+
+}

@@ -1,0 +1,37 @@
+package br.com.eventosbook.rn;
+
+import br.com.eventosbook.dao.impl.DaoContratanteImpl;
+import br.com.eventosbook.modelo.Formulario;
+import br.com.eventosbook.modelo.Contratante;
+import br.com.eventosbook.modelo.Usuario;
+
+public class RnIncluirContratante {
+	
+	private static RnIncluirContratante aRnIncluirContratante = new RnIncluirContratante();
+	
+	public static RnIncluirContratante getInstance(){
+		if(RnIncluirContratante.aRnIncluirContratante == null){
+			RnIncluirContratante.aRnIncluirContratante = new RnIncluirContratante();
+		}
+		
+		return RnIncluirContratante.aRnIncluirContratante;
+	}
+	
+	public void executar(Formulario pFormulario){
+		
+		Contratante contratante = new Contratante();
+		
+		Usuario usuario = new Usuario();
+		
+		usuario.setEmail(pFormulario.getEmail());
+		usuario.setSenha(pFormulario.getSenha());
+		
+		contratante.setNome(pFormulario.getNome());
+		
+		
+	//	DaoContratanteImpl.getInstance().incluir(pContratante);
+		
+	}
+
+
+}

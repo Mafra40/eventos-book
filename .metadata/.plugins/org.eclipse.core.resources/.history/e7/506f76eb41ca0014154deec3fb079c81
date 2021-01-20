@@ -1,0 +1,24 @@
+package br.com.eventosbook.modelo;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="usuario", schema="eventosbook_teste")
+@SequenceGenerator(name="sequencia_usuario", sequenceName="sequencia_usuario", initialValue=1, allocationSize=50)
+public class FuncaoSistema {
+	
+	@Id
+	@GeneratedValue(strategy=GenerationType.SEQUENCE)
+	@Column(name="id_funcao")
+	private Integer codigo;
+	
+	@Column(name="descricao", unique = true, nullable = false)
+	private String descricao;
+
+}

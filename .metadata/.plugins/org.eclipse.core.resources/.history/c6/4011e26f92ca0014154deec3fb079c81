@@ -1,0 +1,19 @@
+package br.com.eventosbook.dao;
+
+import java.util.List;
+
+import br.com.eventosbook.modelo.Cidade;
+
+public interface DaoCidade {
+
+	public abstract void incluir(Cidade pCidade);
+
+	public abstract void alterar(Cidade pCidade);
+
+	public abstract void excluir(Cidade pCidade);
+
+	public abstract List<Cidade> consultar();
+
+	public abstract Cidade getCidade(Cidade pCidade);
+
+}

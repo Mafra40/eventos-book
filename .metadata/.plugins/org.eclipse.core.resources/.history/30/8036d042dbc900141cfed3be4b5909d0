@@ -1,0 +1,61 @@
+package br.com.eventosbook.interceptador;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
+
+import br.com.eventosbook.constante.Constantes;
+import br.com.eventosbook.modelo.Usuario;
+
+public class AutorizadorInterceptador extends HandlerInterceptorAdapter {
+
+	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object controller) throws Exception{
+
+		String uri = request.getRequestURI();
+
+
+		if(uri.endsWith("login") || 
+				uri.endsWith(Constantes.LINK_EFETUAR_LOGIN) || 
+				uri.contains("resources")){
+
+			return true;
+		}
+
+		if(request.getSession().getAttribute("keyUsuarioLogado")!=null){
+			Usuario usuarioLogado = new Usuario();
+			usuarioLogado = (Usuario) request.getSession().getAttribute("keyUsuarioLogado");
+
+			if(usuarioLogado.getTipoUsuario().getCodigo() == 1){
+
+				//Mapeia todas as URL referente ao usuario que está logado.
+				if(uri.endsWith("areaContribuinte")){
+					return true;
+				} else {
+		 			response.sendRedirect("login");
+					return false;
+				}
+			}
+			
+			
+			//Mapeia todas as URL referente ao usuario que está logado.
+			if(usuarioLogado.getTipoUsuario().getCodigo() == 2){
+				if(uri.endsWith("areaFornecedor")){
+					return true;
+				} else {
+					response.sendRedirect("login");
+					return false;
+				}
+			}
+
+
+ 		} else {
+ 			response.sendRedirect("login");
+ 			return false;
+ 		}
+		
+		return false;
+
+	}
+
+}

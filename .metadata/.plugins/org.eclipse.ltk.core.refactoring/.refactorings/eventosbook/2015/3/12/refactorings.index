@@ -1,0 +1,19 @@
+1426380370828	Copy file
+1426437279630	Rename resource 'recuperacaoConta.jsp'
+1426454914085	Encapsulate field 'novaSenha'
+1426459220351	Copy file
+1426466700866	Delete element
+1426479955745	Rename resource 'bibliotecaNavegacaoAjax.js'
+1426554197555	Delete element
+1426554335709	Move 'areaContratante.jsp' to 'contratante'
+1426554340285	Move 'areaFornecedor.jsp' to 'fornecedor'
+1426554343568	Move 'areaProdutor.jsp' to 'produtor'
+1426554357536	Move 'homeContratante.jsp' to 'contratante'
+1426554360171	Move 'homeFornecedor.jsp' to 'fornecedor'
+1426554362317	Move 'homeProdutor.jsp' to 'produtor'
+1426554792208	Move 6 resources to 'usuario'
+1426556322714	Rename resource 'cadastrarUsuario.jsp'
+1426556325520	Move 'cadastrarContratante.jsp' to 'contratante'
+1426563552600	Delete element
+1426563583125	Rename type 'Cadastro'
+1426652052105	Delete element

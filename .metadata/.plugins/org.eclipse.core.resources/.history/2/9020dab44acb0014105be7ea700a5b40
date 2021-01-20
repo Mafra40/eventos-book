@@ -1,0 +1,50 @@
+package br.com.eventosbook.util;
+
+import java.security.MessageDigest;
+import java.util.Calendar;
+import java.util.Date;
+
+import br.com.eventosbook.constante.Constantes;
+
+public class BibliotecaFuncao {
+
+	public static Calendar getDataAtual() {
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(new Date());
+		
+		return cal;
+	}
+	
+
+	public static Calendar inserirData(int pDia, int pMes, int pAno){
+		Calendar retorno = Calendar.getInstance();
+		retorno.set(pAno, pMes, pDia);
+		return retorno;
+	}
+	
+	
+	public static String criptografarSenha(String pSenha){
+		StringBuilder sb = new StringBuilder();
+		try {
+			MessageDigest criptSenha = MessageDigest.getInstance("SHA-256");
+			byte messageHash[] = criptSenha.digest(pSenha.getBytes("UTF-8"));
+			
+			
+			for (byte b : messageHash) {
+				sb.append(String.format("%02X", 0xFF & b));
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return sb.toString();
+	}
+	
+	
+	public static void main(String[] args) {
+		String senha = criptografarSenha("123456");
+	}
+
+
+}

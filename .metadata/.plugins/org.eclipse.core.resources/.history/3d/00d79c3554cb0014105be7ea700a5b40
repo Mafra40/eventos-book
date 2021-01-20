@@ -1,0 +1,47 @@
+package br.com.eventosbook.rn;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
+import br.com.eventosbook.modelo.Usuario;
+
+public class RnRecuperarContaUsuario {
+	
+private static RnRecuperarContaUsuario aRnRecuperarContaUsuario = new RnRecuperarContaUsuario();
+	
+	public static RnRecuperarContaUsuario getInstance(){
+		if(RnRecuperarContaUsuario.aRnRecuperarContaUsuario == null){
+			RnRecuperarContaUsuario.aRnRecuperarContaUsuario = new RnRecuperarContaUsuario();
+		}
+		
+		return RnRecuperarContaUsuario.aRnRecuperarContaUsuario;
+	}
+	
+	public String executar(Usuario pUsuario, HttpSession pSession, HttpServletRequest pRequest){
+		
+		String uri = pRequest.getRequestURI();
+		
+		
+		
+		Usuario usuario = RnConsultarUsuarioPorObjeto.getInstance().executar(pUsuario);
+		
+		if(usuario != null && usuario.getEmail().equals(pUsuario.getEmail())){
+			
+			
+		}
+		
+		return null;
+	}
+	
+	//TODO implemetação do Rodrigo Mafra - Enviar Email.
+	private void enviarEmail(String pEmail){
+		//Envia um email para o usuário com o Link de alteração de senha.
+		
+	}
+	
+	private String gerarLink(String pUri){
+		
+		BibliotecaFuncao.criptografarPalavra(pUri);
+	}
+
+}

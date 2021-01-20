@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
+		<item value="false" key="isRegEx"/>
+		<item value="numeroDocumento" key="selection"/>
+		<item value="false" key="casesensitive"/>
+		<item value="false" key="incremental"/>
+		<item value="true" key="wrap"/>
+		<item value="false" key="wholeword"/>
+		<list key="findhistory">
+			<item value="numeroDocumento"/>
+			<item value="confirmSenha"/>
+			<item value="cofirmSenha"/>
+			<item value="&quot;"/>
+			<item value="URL referente"/>
+			<item value="RnAlterarSenhaUsuario"/>
+			<item value="AlterarSenhaUsuario"/>
+			<item value="RnRecuperarContaUsuario"/>
+		</list>
+		<list key="replacehistory">
+			<item value="comfirmSenha"/>
+			<item value="cofirmSenha"/>
+			<item value=""/>
+			<item value="URL&apos;s que pertence"/>
+			<item value="RnAlteraUsuario"/>
+			<item value="RnAlterarUsuario"/>
+			<item value="RnAlterarSenhaUsuario"/>
+			<item value="BibliotecaFuncao.criptografarPalavra(&quot;123&quot;)"/>
+		</list>
+	</section>
+	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
+		<item value="257" key="DIALOG_WIDTH"/>
+		<item value="1|Segoe UI|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI" key="DIALOG_FONT_NAME"/>
+		<item value="381" key="DIALOG_HEIGHT"/>
+		<item value="884" key="DIALOG_X_ORIGIN"/>
+		<item value="197" key="DIALOG_Y_ORIGIN"/>
+	</section>
+</section>

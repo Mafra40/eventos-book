@@ -1,0 +1,9 @@
+$(document).ready(function(){
+	getRecuperarUsuario();
+});
+
+function getRecuperarUsuario(){
+	$("#btnRecuperarConta").click(function(){
+		$.post("efetuarRecuperacaoConta")
+	});
+}

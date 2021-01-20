@@ -1,0 +1,16 @@
+package br.com.eventosbook.fachada;
+
+public class FornecedorServico {
+	
+
+	private static FornecedorServico aFornecedorServico = new FornecedorServico();
+	
+	public static FornecedorServico getInstance(){
+		if(FornecedorServico.aFornecedorServico == null){
+			FornecedorServico.aFornecedorServico = new FornecedorServico();
+		}
+		
+		return FornecedorServico.aFornecedorServico;
+	}
+
+}

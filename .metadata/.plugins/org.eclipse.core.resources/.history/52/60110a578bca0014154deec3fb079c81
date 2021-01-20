@@ -1,0 +1,19 @@
+package br.com.eventosbook.rn;
+
+public class RnConsultarUsuarioPorObjeto {
+	
+	
+		
+		private RnConsultarUsuarioPorObjeto() {}
+		
+		private static RnConsultarUsuarioPorObjeto aRnConsultarUsuarioPorObjeto = new RnConsultarUsuarioPorObjeto();
+		
+		public static RnConsultarUsuarioPorObjeto getInstance(){
+			if(RnConsultarUsuarioPorObjeto.aRnConsultarUsuarioPorObjeto == null){
+				RnConsultarUsuarioPorObjeto.aRnConsultarUsuarioPorObjeto = new RnConsultarUsuarioPorObjeto();
+			}
+			
+			return RnConsultarUsuarioPorObjeto.aRnConsultarUsuarioPorObjeto;
+		}
+
+}

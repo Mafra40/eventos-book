@@ -1,0 +1,77 @@
+package br.com.eventosbook.interceptador;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
+
+import br.com.eventosbook.constante.Constantes;
+import br.com.eventosbook.modelo.Usuario;
+
+public class VerificaUsuarioInterceptador extends HandlerInterceptorAdapter {
+
+	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object controller) throws Exception{
+
+		String uri = request.getRequestURI();
+
+
+		if(uri.endsWith(Constantes.LINK_LOGIN) || 
+				uri.endsWith(Constantes.LINK_EFETUAR_LOGIN) || 
+				uri.contains("resources")){
+
+			return true;
+		}
+
+		if(request.getSession().getAttribute(Constantes.CONTEXTO_USUARIO_LOGADO)!=null){
+			Usuario usuarioLogado = new Usuario();
+			usuarioLogado = (Usuario) request.getSession().getAttribute(Constantes.CONTEXTO_USUARIO_LOGADO);
+
+			if(usuarioLogado.getTipoUsuario().getSigla() == Constantes.SIGLA_TIPO_USUARIO_CONTRATANTE){
+
+				//Mapeia todas as URL referente ao CONTRATANTE que está logado.
+				if(uri.endsWith(Constantes.LINK_HOME_CONTRATANTE)){
+					return true;
+				} else if(uri.endsWith(Constantes.LINK_AREA_CONTRATANTE)){
+					return true;
+				}else{
+		 			response.sendRedirect(Constantes.LINK_LOGIN);
+					return false;
+				}
+			}
+			
+			
+			//Mapeia todas as URL referente ao FORNECEDOR que está logado.
+			if(usuarioLogado.getTipoUsuario().getSigla() == Constantes.SIGLA_TIPO_USUARIO_FORNECEDOR){
+				if(uri.endsWith(Constantes.LINK_AREA_FORNECEDOR)){
+					return true;
+				} else if(uri.endsWith(Constantes.LINK_AREA_FORNECEDOR)){
+					return true;
+				} else {
+					response.sendRedirect(Constantes.LINK_LOGIN);
+					return false;
+				}
+			}
+			
+			//Mapeia todas as URL referente ao PRODUTOR que está logado.
+			if(usuarioLogado.getTipoUsuario().getSigla() == Constantes.SIGLA_TIPO_USUARIO_PRODUTOR){
+				if(uri.endsWith(Constantes.LINK_AREA_PRODUTOR)){
+					return true;
+				} else if(uri.endsWith(Constantes.LINK_AREA_PRODUTOR)){
+					return true;
+				} else {
+					response.sendRedirect(Constantes.LINK_LOGIN);
+					return false;
+				}
+			}
+
+ 		} else {
+ 			request.getSession().removeAttribute(Constantes.CONTEXTO_USUARIO_LOGADO);
+ 			response.sendRedirect(Constantes.LINK_LOGIN);
+ 			return false;
+ 		}
+		
+		return false;
+
+	}
+
+}

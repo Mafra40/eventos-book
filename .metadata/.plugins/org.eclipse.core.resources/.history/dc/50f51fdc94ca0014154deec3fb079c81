@@ -1,0 +1,327 @@
+package br.com.eventosbook.Teste;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import br.com.eventosbook.constante.Constantes;
+import br.com.eventosbook.controladores.UsuarioControlador;
+import br.com.eventosbook.fachada.ContratanteServico;
+import br.com.eventosbook.fachada.FornecedorServico;
+import br.com.eventosbook.fachada.ProdutorServico;
+import br.com.eventosbook.fachada.UsuarioServico;
+import br.com.eventosbook.modelo.Cidade;
+import br.com.eventosbook.modelo.Contratante;
+import br.com.eventosbook.modelo.Endereco;
+import br.com.eventosbook.modelo.Estado;
+import br.com.eventosbook.modelo.Fornecedor;
+import br.com.eventosbook.modelo.Produtor;
+import br.com.eventosbook.modelo.Situacao;
+import br.com.eventosbook.modelo.Telefone;
+import br.com.eventosbook.modelo.TipoUsuario;
+import br.com.eventosbook.modelo.Usuario;
+import br.com.eventosbook.util.BibliotecaFuncao;
+
+public class TesteHibernate {
+	
+	
+	public static void main(String[] args) {
+		
+		//popularSituacao();
+		//popularTipoUsuario();
+		//popularEstado();
+		
+		inserirContratante();
+		inserirFornecedor();
+		inserirProdutor();
+	
+	}
+	
+	public static void popularEstado(){
+		Estado est = new Estado();
+		est.setDescricao("pernambuco");
+		est.setSigla("PE");
+		
+		Cidade recife = new Cidade();
+		recife.setDescricao("Recife");
+		Cidade jaboatao = new Cidade();
+		jaboatao.setDescricao("Jaboatao");
+		
+		List<Cidade> listaCidade = new ArrayList<Cidade>();
+		listaCidade.add(recife);
+		listaCidade.add(jaboatao);
+		
+		est.setColecaoCidade(listaCidade);
+		
+		UsuarioServico.getInstance().incuirEstado(est);
+		
+	}
+	
+	
+	public static void popularTipoUsuario(){
+		
+		TipoUsuario tpContratante = new TipoUsuario();
+		//tpContratante.setCodigo(1);
+		tpContratante.setDescricao("CONTRATANTE");
+		tpContratante.setSigla(Constantes.SIGLA_TIPO_USUARIO_CONTRATANTE);
+		
+		UsuarioServico.getInstance().incluirTipoUsuario(tpContratante);
+		
+		TipoUsuario tpFornecedor = new TipoUsuario();
+		//tpFornecedor.setCodigo(2);
+		tpFornecedor.setDescricao("FORNECEDOR");
+		tpFornecedor.setSigla(Constantes.SIGLA_TIPO_USUARIO_FORNECEDOR);
+		
+		UsuarioServico.getInstance().incluirTipoUsuario(tpFornecedor);
+		
+		TipoUsuario tpProdutor = new TipoUsuario();
+		//tpProdutor.setCodigo(3);
+		tpProdutor.setDescricao("PRODUTOR");
+		tpProdutor.setSigla(Constantes.SIGLA_TIPO_USUARIO_PRODUTOR);
+		
+		UsuarioServico.getInstance().incluirTipoUsuario(tpProdutor);
+		
+	}
+	
+	
+	public static void popularSituacao(){
+		Situacao ativo  = new Situacao();
+		//ativo.setCodigo(1);
+		ativo.setDescricao("ATIVO");
+		ativo.setSigla(Constantes.SIGLA_SITUACAO_USUARIO_ATIVO);
+		
+		UsuarioServico.getInstance().incluirSituacaoUsuario(ativo);
+		
+		Situacao inativo = new Situacao();
+		//inativo.setCodigo(2);
+		inativo.setDescricao("INATIVO");
+		inativo.setSigla(Constantes.SIGLA_SITUACAO_USUARIO_INATIVO);
+		
+		UsuarioServico.getInstance().incluirSituacaoUsuario(inativo);
+	}
+	
+	
+	public static void inserirContratante(){
+	
+		Contratante cont1 = new Contratante();
+		cont1.setNome("Contratante1");
+		cont1.setSexo("masculino");
+		cont1.setDataNascimento(BibliotecaFuncao.inserirData(02, 02, 1994));
+		cont1.setCpf("099888654321");
+		
+		Usuario usuario = new Usuario();
+		usuario.setEmail("cont1@gmail.com");
+		usuario.setSenha("123");
+		usuario.setDataCricacao(BibliotecaFuncao.getDataAtual());
+		usuario.setDataAtualizacao(BibliotecaFuncao.getDataAtual());
+		
+		Telefone tel1 = new Telefone();
+		tel1.setDescricao("81-99878654");
+		Telefone tel2 = new Telefone();
+		tel2.setDescricao("81-88760987");
+		
+		
+		List<Telefone> listaTelefone = new ArrayList<Telefone>();
+		listaTelefone.add(tel1);
+		listaTelefone.add(tel2);
+		
+		usuario.setColecaoTelefone(listaTelefone);
+		
+		TipoUsuario tpUsuario = new TipoUsuario();
+		tpUsuario.setSigla(Constantes.SIGLA_TIPO_USUARIO_CONTRATANTE);
+		tpUsuario = UsuarioServico.getInstance().consultarTipoUsuarioPorObjeto(tpUsuario);
+		
+		usuario.setTipoUsuario(tpUsuario);
+		
+		Situacao situacao = new Situacao();
+		situacao.setSigla(Constantes.SIGLA_SITUACAO_USUARIO_ATIVO);
+		situacao = UsuarioServico.getInstance().consultarSituacaoUsuarioPorObjeto(situacao);
+		
+		usuario.setSituacao(situacao);
+		
+		Endereco end = new Endereco();
+		end.setCep(512005600);
+		end.setLogradouro("Rua Rio alguma coisa ");
+		end.setDescricao("Sei lá");
+		end.setComplemento("blá blá blá");
+		end.setNumero("Sem Numero");
+		
+		Cidade cid = new Cidade();
+		cid.setCodigo(13);
+		end.setCidade(cid);
+		
+		Estado estd = new Estado();
+		estd.setCodigo(1);
+		estd.setDescricao("Pernambuco");
+		estd.setSigla("PE");
+		
+		List<Cidade> listaCidade = new ArrayList<Cidade>();
+		
+		listaCidade.add(cid);
+		
+		estd.setColecaoCidade(listaCidade);
+		
+		end.setEstado(estd);
+	
+		List<Endereco> listaEnderecos = new ArrayList<Endereco>();
+		listaEnderecos.add(end);
+		usuario.setColecaoEndereco(listaEnderecos);
+		
+		cont1.setUsuario(usuario);
+		
+		ContratanteServico.getInstance().incluirContratante(cont1);
+	}
+	
+	public static void inserirFornecedor(){
+		
+		Fornecedor forn1 = new Fornecedor();
+		forn1.setNome("fornecedor1");
+		forn1.setNumeroDocumento("001163");
+		forn1.setHorarioAtendimento("Seg à Sex das 8:00 as 19:00");
+
+		
+		Usuario usuario = new Usuario();
+		usuario.setEmail("forn1@gmail.com");
+		usuario.setSenha("123");
+		usuario.setDataCricacao(BibliotecaFuncao.getDataAtual());
+		usuario.setDataAtualizacao(BibliotecaFuncao.getDataAtual());
+		
+		Telefone tel1 = new Telefone();
+		tel1.setDescricao("81-99878654");
+		Telefone tel2 = new Telefone();
+		tel2.setDescricao("81-88760987");
+		
+		
+		List<Telefone> listaTelefone = new ArrayList<Telefone>();
+		listaTelefone.add(tel1);
+		listaTelefone.add(tel2);
+		
+		usuario.setColecaoTelefone(listaTelefone);
+		
+		TipoUsuario tpUsuario = new TipoUsuario();
+		tpUsuario.setSigla(Constantes.SIGLA_TIPO_USUARIO_FORNECEDOR);
+		tpUsuario = UsuarioServico.getInstance().consultarTipoUsuarioPorObjeto(tpUsuario);
+		
+		usuario.setTipoUsuario(tpUsuario);
+		
+		Situacao situacao = new Situacao();
+		situacao.setSigla(Constantes.SIGLA_SITUACAO_USUARIO_ATIVO);
+		situacao = UsuarioServico.getInstance().consultarSituacaoUsuarioPorObjeto(situacao);
+		
+		usuario.setSituacao(situacao);
+		
+		Endereco end = new Endereco();
+		end.setCep(512005600);
+		end.setLogradouro("Rua alguma coisa ");
+		end.setDescricao("Sei lá");
+		end.setComplemento("blá blá blá");
+		end.setNumero("Sem Numero");
+		
+		
+		Cidade cid = new Cidade();
+		cid.setCodigo(1);
+		cid.setDescricao("Recife");
+		end.setCidade(cid);
+		
+		Estado estd = new Estado();
+		estd.setCodigo(1);
+		estd.setDescricao("Pernambuco");
+		estd.setSigla("PE");
+		
+		List<Cidade> listaCidade = new ArrayList<Cidade>();
+		
+		listaCidade.add(cid);
+		
+		estd.setColecaoCidade(listaCidade);
+		
+		end.setEstado(estd);
+	
+		List<Endereco> listaEnderecos = new ArrayList<Endereco>();
+		listaEnderecos.add(end);
+		usuario.setColecaoEndereco(listaEnderecos);
+		
+		forn1.setUsuario(usuario);
+		
+		FornecedorServico.getInstance().incluirFornecedor(forn1);
+		
+		
+	}
+	
+	public static void inserirProdutor(){
+		
+		Produtor prod1 = new Produtor();
+		prod1.setNome("Produtor1");
+		prod1.setNumeroDocumento("001163");
+		prod1.setHorarioAtendimento("Seg à Sex das 8:00 as 19:00");
+
+		
+		Usuario usuario = new Usuario();
+		usuario.setEmail("prod1@gmail.com");
+		usuario.setSenha("123");
+		usuario.setDataCricacao(BibliotecaFuncao.getDataAtual());
+		usuario.setDataAtualizacao(BibliotecaFuncao.getDataAtual());
+		
+		Telefone tel1 = new Telefone();
+		tel1.setDescricao("81-99878654");
+		Telefone tel2 = new Telefone();
+		tel2.setDescricao("81-88760987");
+		
+		
+		List<Telefone> listaTelefone = new ArrayList<Telefone>();
+		listaTelefone.add(tel1);
+		listaTelefone.add(tel2);
+		
+		usuario.setColecaoTelefone(listaTelefone);
+		
+		TipoUsuario tpUsuario = new TipoUsuario();
+		tpUsuario.setSigla(Constantes.SIGLA_TIPO_USUARIO_PRODUTOR);
+		tpUsuario = UsuarioServico.getInstance().consultarTipoUsuarioPorObjeto(tpUsuario);
+		
+		usuario.setTipoUsuario(tpUsuario);
+		
+		Situacao situacao = new Situacao();
+		situacao.setSigla(Constantes.SIGLA_SITUACAO_USUARIO_ATIVO);
+		situacao = UsuarioServico.getInstance().consultarSituacaoUsuarioPorObjeto(situacao);
+		
+		usuario.setSituacao(situacao);
+		
+		Endereco end = new Endereco();
+		end.setCep(512005600);
+		end.setLogradouro("Rua alguma coisa ");
+		end.setDescricao("Sei lá");
+		end.setComplemento("blá blá blá");
+		end.setNumero("Sem Numero");
+
+		Cidade cid = new Cidade();
+		cid.setCodigo(1);
+		cid.setDescricao("Recife");
+		end.setCidade(cid);
+		
+		Estado estd = new Estado();
+		estd.setCodigo(1);
+		estd.setDescricao("Pernambuco");
+		estd.setSigla("PE");
+		
+		List<Cidade> listaCidade = new ArrayList<Cidade>();
+		
+		listaCidade.add(cid);
+		
+		estd.setColecaoCidade(listaCidade);
+		
+		end.setEstado(estd);
+	
+		List<Endereco> listaEnderecos = new ArrayList<Endereco>();
+		listaEnderecos.add(end);
+		usuario.setColecaoEndereco(listaEnderecos);
+		
+		prod1.setUsuario(usuario);
+		
+		ProdutorServico.getInstance().incluirProdutor(prod1);
+		
+		
+	}
+	
+	
+	
+	
+
+}

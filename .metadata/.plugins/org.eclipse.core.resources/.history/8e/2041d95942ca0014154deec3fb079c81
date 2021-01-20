@@ -1,0 +1,12 @@
+package br.com.eventosbook.rn;
+
+import br.com.eventosbook.dao.impl.DaoSituacaoImpl;
+import br.com.eventosbook.modelo.Situacao;
+
+public class RnIncluirSituacao {
+	
+	public void Executar(Situacao pSituacao){
+		DaoSituacaoImpl.getInstance().incluir(pSituacao);
+	}
+
+}

@@ -1,0 +1,28 @@
+.container-fluid{
+	margin-top: 20%;
+	
+}
+
+#btnCadastrar{
+	width: 100%;
+}
+
+#btnEnviar{
+	width: 100%;
+}
+
+
+#btnLogin{
+	
+	float:right;
+}
+
+#btnLink{
+	text-align: center;
+}
+
+#btnRecuperarConta{
+	width: 100%;
+}
+
+

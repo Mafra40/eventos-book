@@ -1,0 +1,63 @@
+package br.com.eventosbook.dao.impl;
+
+import java.util.List;
+
+import br.com.eventosbook.dao.DaoFornecedor;
+import br.com.eventosbook.hibernate.util.ConnectionFactory;
+import br.com.eventosbook.modelo.Fornecedor;
+
+public class DaoFornecedorImpl implements DaoFornecedor {
+	
+	private DaoFornecedorImpl() {}
+	private static DaoFornecedorImpl aDAOFornecedor = new DaoFornecedorImpl();
+
+	public static DaoFornecedorImpl getInstance(){
+		if(DaoFornecedorImpl.aDAOFornecedor == null){
+			DaoFornecedorImpl.aDAOFornecedor = new DaoFornecedorImpl();
+		}
+		
+		return DaoFornecedorImpl.aDAOFornecedor;
+	}
+
+	@Override
+	public void incluir(Fornecedor pFornecedor) {
+		try{
+			ConnectionFactory.getInstace().getConnection().getTransaction().begin();
+			ConnectionFactory.getInstace().getConnection().persist(pFornecedor);
+			ConnectionFactory.getInstace().getConnection().getTransaction().commit();
+		}catch(Exception e){
+			e.printStackTrace();
+			ConnectionFactory.getInstace().getConnection().getTransaction().rollback();
+			
+		} finally{
+			ConnectionFactory.getInstace().getCloseConnection();
+
+		}
+
+	}
+
+	@Override
+	public void alterar(Fornecedor pFornecedor) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void excluir(Fornecedor pFornecedor) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public List<Fornecedor> consultar() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Fornecedor getFornecedor(Fornecedor pFornecedor) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

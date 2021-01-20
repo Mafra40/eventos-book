@@ -1,0 +1,44 @@
+package br.com.eventosbook.rn;
+
+import javax.servlet.http.HttpSession;
+
+import br.com.eventosbook.constante.Constantes;
+import br.com.eventosbook.modelo.Usuario;
+import br.com.eventosbook.util.BibliotecaFuncao;
+import br.com.eventosbook.util.BibliotecaValidacao;
+
+public class RnAlterarSenhaUsuario {
+	
+private static RnAlterarSenhaUsuario aRnAlterarSenhaUsuario = new RnAlterarSenhaUsuario();
+	
+	public static RnAlterarSenhaUsuario getInstance(){
+		if(RnAlterarSenhaUsuario.aRnAlterarSenhaUsuario == null){
+			RnAlterarSenhaUsuario.aRnAlterarSenhaUsuario = new RnAlterarSenhaUsuario();
+		}
+		
+		return RnAlterarSenhaUsuario.aRnAlterarSenhaUsuario;
+	}
+	
+	
+	public String executar(Usuario pUsuario, HttpSession pSession){
+		
+		Usuario usuarioAserAlterado = (Usuario) pSession.getAttribute(Constantes.CONTEXTO_USUARIO_LOGADO);
+		usuarioAserAlterado = RnConsultarUsuarioPorObjeto.getInstance().executar(usuarioAserAlterado);
+		
+		if(!pUsuario.getPalavraPasse().equals(usuarioAserAlterado.getSenha())){
+			return Constantes.LINK_ALTERACAO_SENHA;
+		}
+		
+		boolean isSenhaValida = BibliotecaValidacao.getInstance().validarSenha(pUsuario.getSenha(), pUsuario.getNovaSenha());
+			
+		if(isSenhaValida){
+			usuarioAserAlterado.setSenha(BibliotecaFuncao.criptografarPalavra(pUsuario.getSenha()));
+			return RnAlterarUsuario.getInstance().executar(usuarioAserAlterado);
+			
+		} else {
+			return Constantes.LINK_ALTERACAO_SENHA;
+		}
+		
+	}
+
+}

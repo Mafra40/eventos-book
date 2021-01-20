@@ -1,0 +1,96 @@
+package br.com.eventosbook.controladores;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import br.com.eventosbook.constante.Constantes;
+import br.com.eventosbook.fachada.UsuarioServico;
+import br.com.eventosbook.modelo.Usuario;
+import br.com.eventosbook.rn.RnRecuperarContaUsuario;
+
+@Controller
+public class UsuarioControlador {
+	
+	
+	@RequestMapping("/"+Constantes.LINK_LOGIN)
+	public String getLogin(HttpSession pSession){
+		return Constantes.NM_JSP_LOGIN ;
+	}
+	@RequestMapping("/"+Constantes.LINK_LOGIN_INVALIDO)
+	public String getLoginInvalido(HttpSession pSession){
+		pSession.removeAttribute(Constantes.CONTEXTO_USUARIO_LOGADO);
+		return Constantes.NM_JSP_LOGIN_INVALIDO ;
+	}
+	
+	@RequestMapping("/"+Constantes.LINK_EFETUAR_LOGIN)
+	public String getEfetuarlogin(Usuario pUsuario, HttpSession pSession){
+		Usuario usuario = new Usuario();
+		
+		if(pSession.getAttribute(Constantes.CONTEXTO_USUARIO_LOGADO)!=null){
+			usuario = (Usuario)pSession.getAttribute(Constantes.CONTEXTO_USUARIO_LOGADO);
+		} else {
+			usuario = pUsuario;
+		}
+		
+		return UsuarioServico.getInstance().validarUsuario(usuario, pSession);
+	}
+	
+	
+	@RequestMapping("/"+Constantes.LINK_RECUPERACAO_CONTA)
+	public String getRecuperacaoConta(){
+		
+		return Constantes.NM_JSP_RECUPERACAO_CONTA;
+	}
+	
+	@RequestMapping("/"+Constantes.LINK_EFETUAR_RECUPERACAO_CONTA)
+	public String  getEfetuarRecuperacaoConta(Usuario pUsuario, HttpSession pSession, HttpServletRequest pRequest){
+		
+		return  UsuarioServico.getInstance().recuperarContaUsuario(pUsuario, pSession, pRequest);
+	}
+	
+	@RequestMapping("/"+Constantes.LINK_ALTERACAO_SENHA)
+	public String getAlteracaoSenha(){
+		return Constantes.NM_JSP_ALTERACAO_SENHA;
+	}
+	
+	@RequestMapping("/"+Constantes.LINK_EFETUAR_ALTERAR_SENHA)
+	public String getEfetuarAlteracaoSenha(){
+		return null;
+	}
+	
+	@RequestMapping("/"+Constantes.LINK_HOME_CONTRATANTE)
+	public String getHomeContratante(){
+		return Constantes.NM_JSP_HOME_CONTRATANTE;
+	}
+	
+	@RequestMapping("/"+Constantes.LINK_HOME_FORNECEDOR)
+	public String getHomeFornecedor(){
+		return Constantes.NM_JSP_HOME_FORNECEDOR;
+	}
+	
+	@RequestMapping("/"+Constantes.LINK_HOME_PRODUTOR)
+	public String getHomeProdutor(){
+		return Constantes.NM_JSP_HOME_PRODUTOR;
+	}
+	
+	
+	
+	@RequestMapping(Constantes.LINK_AREA_CONTRATANTE)
+	public String getAreaContratante(){
+		return Constantes.NM_JSP_AREA_CONTRATANTE;
+	}
+	
+	@RequestMapping(Constantes.LINK_AREA_FORNECEDOR)
+	public String getAreaFornecedor(){
+		return Constantes.NM_JSP_AREA_FORNECEDOR;
+	}
+	
+	@RequestMapping(Constantes.LINK_AREA_PRODUTOR)
+	public String getAreaProdutor(){
+		return Constantes.NM_JSP_AREA_PRODUTOR;
+	}
+
+}

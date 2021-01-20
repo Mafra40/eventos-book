@@ -1,0 +1,56 @@
+1425773901606	Rename type 'LoginController'
+1425774790141	Delete element
+1425774793812	Delete element
+1425774884221	Delete element
+1425775003385	Delete elements
+1425775014527	Copy file
+1425775102371	Delete element
+1425775506085	Copy file
+1425775891231	Rename resource 'home.jsp'
+1425777131358	Delete element
+1425778383447	Rename package 'br.com.eventosbook.controller'
+1425778975540	Delete element
+1425784493418	Encapsulate field 'tipoPerfil'
+1425786377636	Delete element
+1425834751832	Rename package 'br.com.eventosbook.controlador'
+1425834760270	Rename package 'br.com.eventosbook.spring_controllers'
+1425834779101	Rename package 'br.com.eventosbook.controller'
+1425834790902	Rename package 'br.com.eventosbook.model'
+1425836279467	Rename package 'br.com.eventosbook.interceptor'
+1425836308970	Rename type 'AutorizadorInterceptor'
+1425917148063	Rename type 'UsuarioPerfil'
+1425917322531	Encapsulate field 'dataAtualizacao'
+1425917635284	Delete element
+1425923258149	Encapsulate field 'sigla'
+1425926266376	Encapsulate field 'endereco'
+1425934703065	Encapsulate field 'endereco'
+1425939595590	Encapsulate field 'listsuario'
+1425945859719	Delete element
+1425946438083	Encapsulate field 'colecaoTelefone'
+1425948114431	Delete element
+1425949046983	Encapsulate field 'logradouro'
+1426290064765	Delete element
+1426290081660	Rename package 'br.com.eventosbook.servicos'
+1426290156083	Rename package 'br.com.eventosbook.dao'
+1426290176132	Rename package 'br.com.eventosbook.interfaces'
+1426290232523	Move compilation unit
+1426290251877	Move compilation unit
+1426290314044	Rename type 'UsuarioController'
+1426290391450	Move compilation unit
+1426290428423	Rename type 'AutorizadorInterceptador'
+1426290516109	Rename type 'DAOSituacao'
+1426290522687	Rename type 'DAOUsuario'
+1426290539648	Rename type 'IntfUsuario'
+1426290545274	Rename type 'IntfSituacao'
+1426290599565	Rename type 'Controlador'
+1426305733476	Copy folder
+1426305740609	Delete element
+1426334337508	Delete element
+1426341190583	Delete element
+1426354883965	Delete element
+1426364724135	Rename type 'RnConsultarSituacao'
+1426369013383	Rename type 'RnIncluirCidade'
+1426369101927	Rename type 'DaoCidade'
+1426369145911	Rename type 'DaoCidadeImpl'
+1426375669990	Copy file
+1426375686014	Copy file

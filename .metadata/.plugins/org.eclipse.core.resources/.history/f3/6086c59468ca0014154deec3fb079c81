@@ -1,0 +1,18 @@
+package br.com.eventosbook.fachada;
+
+public class ContratanteServico {
+	
+	private ContratanteServico() {}
+	
+	private static ContratanteServico aContratanteServico = new ContratanteServico();
+	
+	public static ContratanteServico getInstance(){
+		if(ContratanteServico.aContratanteServico == null){
+			ContratanteServico.aContratanteServico = new ContratanteServico();
+		}
+		
+		return ContratanteServico.aContratanteServico;
+	}
+	
+
+}

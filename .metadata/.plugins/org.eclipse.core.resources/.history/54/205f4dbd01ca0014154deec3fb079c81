@@ -1,0 +1,75 @@
+package br.com.eventosbook.dao.impl;
+
+import java.util.List;
+
+import org.hibernate.Transaction;
+
+import br.com.eventosbook.dao.DaoCidade;
+import br.com.eventosbook.hibernate.util.ConnectionFactory;
+import br.com.eventosbook.modelo.Cidade;
+
+public class DaoCidadeImpl implements DaoCidade{
+	
+	private DaoCidadeImpl() {}
+	private static DaoCidadeImpl aDAOCidade = new DaoCidadeImpl();
+
+	public static DaoCidadeImpl getInstance(){
+		if(DaoCidadeImpl.aDAOCidade == null){
+			DaoCidadeImpl.aDAOCidade = new DaoCidadeImpl();
+		}
+		
+		return DaoCidadeImpl.aDAOCidade;
+	}
+
+
+	
+	@Override
+	public void incluir(Cidade pCidade) {
+		
+		try{
+			ConnectionFactory.getInstace().getConnection().getTransaction().begin();
+			ConnectionFactory.getInstace().getConnection().persist(pCidade);
+			ConnectionFactory.getInstace().getConnection().getTransaction().commit();
+		}catch(Exception e){
+			e.printStackTrace();
+			System.out.println(e.getMessage());
+			ConnectionFactory.getInstace().getConnection().getTransaction().rollback();
+			
+		} finally{
+			ConnectionFactory.getInstace().getConnection().close();
+
+		}
+
+		
+	}
+
+	
+	@Override
+	public void alterar(Cidade pCidade) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	
+	@Override
+	public void excluir(Cidade pCidade) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	
+
+	@Override
+	public List<Cidade> consultar() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public Cidade getCidade(Cidade pCidade) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

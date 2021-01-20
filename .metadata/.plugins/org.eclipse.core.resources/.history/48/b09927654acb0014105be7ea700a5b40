@@ -1,0 +1,35 @@
+package br.com.eventosbook.util;
+
+import java.security.MessageDigest;
+import java.util.Calendar;
+import java.util.Date;
+
+import br.com.eventosbook.constante.Constantes;
+
+public class BibliotecaFuncao {
+
+	public static Calendar getDataAtual() {
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(new Date());
+		
+		return cal;
+	}
+	
+
+	public static Calendar inserirData(int pDia, int pMes, int pAno){
+		Calendar retorno = Calendar.getInstance();
+		retorno.set(pAno, pMes, pDia);
+		return retorno;
+	}
+	
+	
+	public static String(String pSenha){
+		StringBuilder sb = new StringBuilder();
+		
+		
+		
+		return null;
+	}
+
+
+}

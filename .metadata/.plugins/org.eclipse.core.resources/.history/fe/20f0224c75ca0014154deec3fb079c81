@@ -1,0 +1,97 @@
+package br.com.eventosbook.modelo;
+
+import java.util.Calendar;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+
+
+@Entity
+@Table(name="fornecedor", schema="eventosbook_teste")
+@SequenceGenerator(name="sequencia_fornecedor", sequenceName="sequencia_fornecedor", initialValue=1, allocationSize=50)
+public class Fornecedor{
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO, generator="sequencia_fornecedor")
+	@Column(name = "id_fornecedor")
+	private Integer codigo;
+	
+	@Column(name="nome", nullable = false)
+	private String nome;
+	
+	@Column(name="numero_documento", unique = true, nullable = false)
+	private String numeroDocumento;
+	
+	@Column(name="descricao")
+	private String descricao;
+	
+	@Column(name="horario_atendimento")
+	private Calendar horarioAtendimento;
+	
+	@ManyToOne
+	@JoinColumn(name = "fk_usuario")
+	private Usuario usuario;
+
+
+	public Integer getCodigo() {
+		return codigo;
+	}
+
+	public void setCodigo(Integer codigo) {
+		this.codigo = codigo;
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public String getNumeroDocumento() {
+		return numeroDocumento;
+	}
+
+	public void setNumeroDocumento(String numeroDocumento) {
+		this.numeroDocumento = numeroDocumento;
+	}
+
+	public String getDescricao() {
+		return descricao;
+	}
+
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
+	}
+
+	public Calendar getHorarioAtendimento() {
+		return horarioAtendimento;
+	}
+
+	public void setHorarioAtendimento(Calendar horarioAtendimento) {
+		this.horarioAtendimento = horarioAtendimento;
+	}
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+	
+	
+	
+	
+	
+	
+
+}

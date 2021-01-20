@@ -1,0 +1,12 @@
+package br.com.eventosbook.rn;
+
+import br.com.eventosbook.dao.impl.DaoTipoUsuarioImpl;
+import br.com.eventosbook.modelo.TipoUsuario;
+
+public class RnIncluirTipoUsuario {
+	
+	public void execute(TipoUsuario pTipoUsuario){
+		DaoTipoUsuarioImpl.getInstance().incluir(pTipoUsuario);
+	}
+
+}

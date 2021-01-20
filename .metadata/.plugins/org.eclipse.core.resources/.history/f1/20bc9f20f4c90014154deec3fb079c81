@@ -1,0 +1,79 @@
+package br.com.eventosbook.dao.impl;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.hibernate.Query;
+import org.hibernate.Transaction;
+
+import br.com.eventosbook.dao.DaoContratante;
+import br.com.eventosbook.modelo.Contratante;
+import br.com.eventosbook.util.ConnectionFactory;
+import br.com.eventosbook.util.Constantes;
+
+public class DaoContratanteImpl implements DaoContratante{
+
+	private DaoContratanteImpl() {}
+	private static DaoContratanteImpl aDAOContratante = new DaoContratanteImpl();
+
+	public static DaoContratanteImpl getInstance(){
+		if(DaoContratanteImpl.aDAOContratante == null){
+			DaoContratanteImpl.aDAOContratante = new DaoContratanteImpl();
+		}
+		
+		return DaoContratanteImpl.aDAOContratante;
+	}
+	
+	
+	@Override
+	public void incluir(Contratante pContratante) {
+		Transaction tx = null;
+		try{
+			tx = ConnectionFactory.getInstace().getConnection().beginTransaction();
+			ConnectionFactory.getInstace().getConnection().save(pContratante);
+			tx.commit();
+			ConnectionFactory.getInstace().closeConnection();
+		}catch(Exception e){
+			e.printStackTrace();
+			System.out.println(e.getMessage());
+			tx.rollback();
+		}
+		
+	}
+
+	@Override
+	public void alterar(Contratante pContratante) {
+		Transaction tx = ConnectionFactory.getInstace().getConnection().beginTransaction();
+		ConnectionFactory.getInstace().getConnection().update(pContratante);
+		tx.commit();
+		ConnectionFactory.getInstace().closeConnection();
+
+	}
+
+	@Override
+	public void excluir(Contratante pContratante) {
+		Transaction tx = ConnectionFactory.getInstace().getConnection().beginTransaction();
+		ConnectionFactory.getInstace().getConnection().delete(pContratante);
+		tx.commit();
+		ConnectionFactory.getInstace().closeConnection();
+
+	}
+
+	@Override
+	public List<Contratante> consultar() {
+		ArrayList<Contratante> retorno = new ArrayList<Contratante>();
+		Query q = ConnectionFactory.getInstace().getConnection().createQuery("FROM " + Constantes.PATH_PROJECT + ".model.Contratante");
+		retorno = (ArrayList<Contratante>) q.list();
+		return retorno;
+	}
+
+	@Override
+	public Contratante getContratante(Contratante pContratante) {
+		Contratante retorno = new Contratante();
+		
+		//TODO Efetuar Implementação
+		return retorno;
+		
+	}
+
+}

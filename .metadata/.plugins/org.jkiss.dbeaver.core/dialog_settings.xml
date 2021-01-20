@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="projectExplorer.columns">
+		<item value="true:0:215:Name" key="0"/>
+		<item value="true:1:187:DataSource" key="1"/>
+		<item value="false:2:0:Size" key="2"/>
+		<item value="false:3:0:Modified" key="3"/>
+		<item value="false:4:0:Type" key="4"/>
+	</section>
+</section>

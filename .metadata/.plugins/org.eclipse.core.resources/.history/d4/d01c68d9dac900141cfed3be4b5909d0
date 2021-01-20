@@ -1,0 +1,113 @@
+package br.com.eventosbook.dao.impl;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.hibernate.Query;
+import org.hibernate.Transaction;
+
+import br.com.eventosbook.dao.IntfSituacao;
+import br.com.eventosbook.modelo.Situacao;
+import br.com.eventosbook.util.ConnectionFactory;
+import br.com.eventosbook.util.Constantes;
+
+public class DAOSituacao implements IntfSituacao {
+	
+	private DAOSituacao() {}
+	
+	private static DAOSituacao aDaoSituacao = new DAOSituacao();
+	
+	public static DAOSituacao getInstance(){
+
+		if(DAOSituacao.aDaoSituacao == null){
+			DAOSituacao.aDaoSituacao = new DAOSituacao();
+		}
+		
+		return  DAOSituacao.aDaoSituacao;
+	}
+
+	@Override
+	public void incluir(Situacao pSituacao) {
+		
+		Transaction tx = ConnectionFactory.getInstace().getConnection().beginTransaction();
+		ConnectionFactory.getInstace().getConnection().save(pSituacao);
+		tx.commit();
+		ConnectionFactory.getInstace().closeConnection();
+
+	}
+
+	@Override
+	public void alterar(Situacao pSituacao) {
+	
+		Transaction tx = ConnectionFactory.getInstace().getConnection().beginTransaction();
+		ConnectionFactory.getInstace().getConnection().update(pSituacao);
+		tx.commit();
+		ConnectionFactory.getInstace().closeConnection();
+	}
+
+	@Override
+	public void excluir(Situacao pSituacao) {
+		Transaction tx = ConnectionFactory.getInstace().getConnection().beginTransaction();
+		ConnectionFactory.getInstace().getConnection().delete(pSituacao);
+		tx.commit();
+		ConnectionFactory.getInstace().closeConnection();
+
+	}
+
+	@Override
+	public List<Situacao> consultar() {
+		ArrayList<Situacao> retorno = new ArrayList<Situacao>();
+		Query q = ConnectionFactory.getInstace().getConnection().createQuery("FROM " + Constantes.PATH_PROJECT + ".model.Situacao");
+		retorno = (ArrayList<Situacao>) q.list();
+		return retorno;
+		
+	}
+
+	@Override
+	public Situacao getSituacao(Situacao pSituacao) {
+		
+		Situacao retorno = new Situacao();
+		
+		try {
+			
+			
+			String sql = "FROM " + Constantes.PATH_PROJECT + ".model.Situacao WHERE 1=1";
+			
+			if(pSituacao.getCodigo() != null){
+				sql+= "AND id_situacao =:id";
+			}
+			
+			if(pSituacao.getDescricao() != null){
+				sql+= "AND descricao =:descricao";
+			}
+			
+			if(pSituacao.getSigla() != null){
+				sql+= "AND sigla =:sigla";
+			}
+			
+			
+			Query q = ConnectionFactory.getInstace().getConnection().createQuery(sql);
+			
+			
+			if(pSituacao.getCodigo() != null){
+				q.setParameter("id", pSituacao.getCodigo());
+			}
+
+			if(pSituacao.getDescricao() != null){
+				q.setParameter("descricao", pSituacao.getDescricao());
+			}
+			if(pSituacao.getSigla() != null){
+				q.setParameter("sigla", pSituacao.getSigla());
+			}
+			
+			retorno = (Situacao)q.uniqueResult();
+		} catch (Exception e) {
+			retorno = null;
+			e.printStackTrace();
+		}
+		
+		return retorno;
+		
+	}
+
+}

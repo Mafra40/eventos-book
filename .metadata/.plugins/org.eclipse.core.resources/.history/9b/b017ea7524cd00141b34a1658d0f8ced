@@ -1,0 +1,146 @@
+package br.com.eventosbook.modelo;
+
+import java.util.Calendar;
+import java.util.Collection;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.persistence.Transient;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.NotEmpty;
+
+
+@Entity
+@Table(name="usuario", schema="eventosbook_teste")
+@SequenceGenerator(name="sequencia_usuario", sequenceName="sequencia_usuario", initialValue=1, allocationSize=50)
+public class Usuario {
+	
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO, generator = "sequencia_usuario")
+	@Column(name="id_usuario")
+	private Integer codigo;
+
+	@Column(name="email", unique = true, nullable = false)
+	private String email;
+	
+	@Column(name="senha", nullable = false)
+	private String senha;
+	
+	private String novaSenha;
+	
+	private String palavraPasse;
+	
+	@ManyToOne
+	@JoinColumn(name="fk_situacao")
+	private Situacao situacao;
+	
+	@ManyToOne
+	@JoinColumn(name="fk_tipo_usuario")
+	private TipoUsuario tipoUsuario;
+	
+	@Column(name="data_cricacao", nullable = false)
+	@Temporal(TemporalType.DATE)
+	private Calendar dataCricacao;
+	
+	@Column(name="data_ult_atualizacao", nullable = false)
+	@Temporal(TemporalType.TIMESTAMP)
+	private Calendar dataAtualizacao;
+	
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinColumn(name="fk_usuario")
+	private Collection<Endereco> colecaoEndereco;
+	
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinColumn(name = "fk_usuario")
+	private Collection<Telefone> colecaoTelefone;
+	
+	public Integer getCodigo() {
+		return codigo;
+	}
+	public void setCodigo(Integer codigo) {
+		this.codigo = codigo;
+	}
+	
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email.toLowerCase();
+	}
+	
+	public String getSenha() {
+		return senha;
+	}
+	public void setSenha(String senha) {
+		this.senha = senha;
+	}
+	
+	public TipoUsuario getTipoUsuario() {
+		return tipoUsuario;
+	}
+	public void setTipoUsuario(TipoUsuario tipoUsuario) {
+		this.tipoUsuario = tipoUsuario;
+	}
+	
+	public Situacao getSituacao() {
+		return situacao;
+	}
+	public void setSituacao(Situacao situacao) {
+		this.situacao = situacao;
+	}
+	
+	public Calendar getDataCricacao() {
+		return dataCricacao;
+	}
+	public void setDataCricacao(Calendar dataCricacao) {
+		this.dataCricacao = dataCricacao;
+	}
+
+	public Calendar getDataAtualizacao() {
+		return dataAtualizacao;
+	}
+	public void setDataAtualizacao(Calendar dataAtualizacao){
+		this.dataAtualizacao = dataAtualizacao;
+	}
+	
+	public Collection<Endereco> getColecaoEndereco() {
+		return colecaoEndereco;
+	}
+	public void setColecaoEndereco(Collection<Endereco> colecaoEndereco) {
+		this.colecaoEndereco = colecaoEndereco;
+	}
+	public Collection<Telefone> getColecaoTelefone() {
+		return colecaoTelefone;
+	}
+	public void setColecaoTelefone(Collection<Telefone> colecaoTelefone) {
+		this.colecaoTelefone = colecaoTelefone;
+	}
+	public String getNovaSenha() {
+		return novaSenha;
+	}
+	public void setNovaSenha(String novaSenha) {
+		this.novaSenha = novaSenha;
+	}
+	
+	public String getPalavraPasse() {
+		return palavraPasse;
+	}
+	public void setPalavraPasse(String palavraPasse) {
+		this.palavraPasse = palavraPasse;
+	}
+
+
+}

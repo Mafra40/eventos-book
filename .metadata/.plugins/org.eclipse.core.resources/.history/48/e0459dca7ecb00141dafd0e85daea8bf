@@ -1,0 +1,3 @@
+campo.email.vazio = "Informe um email"
+campo.senha.vazio = "Informe uma Senha com o mínimo de {min} caracteres"
+campo.email.invalido = "Email inválido"
